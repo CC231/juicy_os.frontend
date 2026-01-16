@@ -1,0 +1,432 @@
+/* App-specific styles - Using regular CSS instead of @apply for custom utilities */
+
+/* Page container */
+.page-container {
+  min-height: 100vh;
+  padding: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .page-container {
+    padding: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .page-container {
+    padding: 3rem;
+  }
+}
+
+/* Page header */
+.page-header {
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+  .page-header {
+    margin-bottom: 3rem;
+  }
+}
+
+.page-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.875rem;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  color: hsl(var(--primary));
+  margin-bottom: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .page-title {
+    font-size: 2.25rem;
+  }
+}
+
+.page-subtitle {
+  color: hsl(var(--muted-foreground));
+  font-size: 1rem;
+}
+
+/* Section styles */
+.section {
+  margin-bottom: 2rem;
+}
+
+.section-title {
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: hsl(var(--muted-foreground));
+  margin-bottom: 1rem;
+}
+
+/* Quick action cards */
+.quick-action {
+  background-color: hsl(var(--card));
+  border: 1px solid hsl(var(--border) / 0.5);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 20px -4px rgba(74, 64, 54, 0.05);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.quick-action:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px -4px rgba(74, 64, 54, 0.1);
+}
+
+/* Stat cards */
+.stat-card {
+  background-color: hsl(var(--card));
+  border: 1px solid hsl(var(--border) / 0.5);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 20px -4px rgba(74, 64, 54, 0.05);
+}
+
+.stat-label {
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: hsl(var(--muted-foreground));
+  margin-bottom: 0.5rem;
+}
+
+.stat-value {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.875rem;
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  color: hsl(var(--primary));
+}
+
+@media (min-width: 768px) {
+  .stat-value {
+    font-size: 2.25rem;
+  }
+}
+
+/* Alert cards */
+.alert-card {
+  background-color: hsl(var(--card));
+  border-left-width: 4px;
+  border-radius: 0.75rem;
+  padding: 1rem;
+  box-shadow: 0 8px 30px rgb(0 0 0 / 0.04);
+}
+
+.alert-card.warning {
+  border-left-color: rgb(245, 158, 11);
+  background-color: rgb(254, 243, 199, 0.5);
+}
+
+.alert-card.danger {
+  border-left-color: rgb(239, 68, 68);
+  background-color: rgb(254, 226, 226, 0.5);
+}
+
+.alert-card.success {
+  border-left-color: rgb(16, 185, 129);
+  background-color: rgb(209, 250, 229, 0.5);
+}
+
+/* Checklist styles */
+.checklist-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid hsl(var(--border) / 0.5);
+}
+
+.checklist-item:last-child {
+  border-bottom: none;
+}
+
+.checklist-item.completed {
+  opacity: 0.6;
+}
+
+.checklist-item .task-text {
+  flex: 1;
+  color: hsl(var(--primary));
+}
+
+.checklist-item.completed .task-text {
+  text-decoration: line-through;
+}
+
+/* Form styles */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: hsl(var(--primary));
+  margin-bottom: 0.5rem;
+}
+
+.form-input {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid hsl(var(--border));
+  padding: 0.75rem 0;
+  font-size: 1.125rem;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.form-input:focus {
+  border-bottom-color: hsl(var(--primary));
+}
+
+.form-input::placeholder {
+  color: hsl(var(--muted-foreground) / 0.5);
+}
+
+/* List items */
+.list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0;
+  border-bottom: 1px solid hsl(var(--border) / 0.5);
+}
+
+.list-item:last-child {
+  border-bottom: none;
+}
+
+/* Badge styles */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+/* Empty state */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 0;
+  text-align: center;
+}
+
+.empty-state-icon {
+  width: 4rem;
+  height: 4rem;
+  color: hsl(var(--muted-foreground) / 0.3);
+  margin-bottom: 1rem;
+}
+
+.empty-state-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  color: hsl(var(--primary));
+  margin-bottom: 0.5rem;
+}
+
+.empty-state-text {
+  color: hsl(var(--muted-foreground));
+}
+
+/* Tabs */
+.tab-list {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+}
+
+.tab-item {
+  padding: 0.625rem 1.25rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  cursor: pointer;
+  border: none;
+}
+
+.tab-item.active {
+  background-color: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+}
+
+.tab-item:not(.active) {
+  background-color: hsl(var(--secondary));
+  color: hsl(var(--secondary-foreground));
+}
+
+.tab-item:not(.active):hover {
+  background-color: hsl(var(--secondary) / 0.8);
+}
+
+/* Search input */
+.search-input {
+  width: 100%;
+  background-color: hsl(var(--secondary) / 0.5);
+  border: 1px solid hsl(var(--border));
+  border-radius: 9999px;
+  padding: 0.75rem 1.25rem;
+  font-size: 1rem;
+  outline: none;
+}
+
+.search-input:focus {
+  box-shadow: 0 0 0 2px hsl(var(--ring));
+}
+
+.search-input::placeholder {
+  color: hsl(var(--muted-foreground) / 0.5);
+}
+
+/* Currency display */
+.currency {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Pill button */
+.pill-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  font-weight: 500;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  cursor: pointer;
+  border: none;
+}
+
+.pill-btn:hover {
+  transform: translateY(-1px);
+}
+
+.pill-btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.pill-btn-primary {
+  background-color: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  padding: 0.75rem 1.5rem;
+}
+
+.pill-btn-primary:hover {
+  background-color: hsl(var(--primary) / 0.9);
+}
+
+.pill-btn-secondary {
+  background-color: hsl(var(--secondary));
+  color: hsl(var(--secondary-foreground));
+  padding: 0.625rem 1.25rem;
+}
+
+.pill-btn-secondary:hover {
+  background-color: hsl(var(--secondary) / 0.8);
+}
+
+.pill-btn-outline {
+  border: 2px solid hsl(var(--primary) / 0.2);
+  color: hsl(var(--primary));
+  background-color: transparent;
+  padding: 0.625rem 1.25rem;
+}
+
+.pill-btn-outline:hover {
+  background-color: hsl(var(--primary) / 0.05);
+}
+
+.pill-btn-accent {
+  background-color: hsl(var(--accent));
+  color: hsl(var(--accent-foreground));
+  padding: 0.75rem 1.5rem;
+}
+
+.pill-btn-accent:hover {
+  background-color: hsl(var(--accent) / 0.9);
+}
+
+/* Icon button */
+.icon-btn {
+  padding: 0.75rem;
+  border-radius: 9999px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.icon-btn:hover {
+  background-color: hsl(var(--secondary));
+}
+
+.icon-btn:active {
+  transform: scale(0.95);
+}
+
+/* Risk level badges */
+.risk-normal {
+  background-color: rgb(209, 250, 229);
+  color: rgb(4, 120, 87);
+  border: 1px solid rgb(167, 243, 208);
+}
+
+.risk-medium {
+  background-color: rgb(254, 243, 199);
+  color: rgb(146, 64, 14);
+  border: 1px solid rgb(253, 230, 138);
+}
+
+.risk-high {
+  background-color: rgb(254, 226, 226);
+  color: rgb(185, 28, 28);
+  border: 1px solid rgb(254, 202, 202);
+}
+
+/* Card hover effect */
+.card-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -10px rgba(74, 64, 54, 0.1);
+}
+
+/* Bottom navigation */
+.bottom-nav {
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* Metric big */
+.metric-big {
+  font-family: 'Playfair Display', serif;
+  font-size: 3.5rem;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+@media (min-width: 768px) {
+  .metric-big {
+    font-size: 4.5rem;
+  }
+}

@@ -1,0 +1,485 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&family=Playfair+Display:wght@400;500;600;700&family=JetBrains+Mono:wght@400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --background: 45 33% 98%;
+        --foreground: 30 13% 25%;
+        --card: 0 0% 100%;
+        --card-foreground: 30 13% 25%;
+        --popover: 0 0% 100%;
+        --popover-foreground: 30 13% 25%;
+        --primary: 30 13% 25%;
+        --primary-foreground: 45 33% 98%;
+        --secondary: 36 20% 93%;
+        --secondary-foreground: 30 13% 25%;
+        --muted: 36 20% 93%;
+        --muted-foreground: 30 6% 52%;
+        --accent: 43 65% 52%;
+        --accent-foreground: 0 0% 100%;
+        --destructive: 0 50% 40%;
+        --destructive-foreground: 0 0% 100%;
+        --border: 36 15% 88%;
+        --input: 36 15% 88%;
+        --ring: 43 65% 52%;
+        --radius: 0.5rem;
+        --chart-1: 12 76% 61%;
+        --chart-2: 173 58% 39%;
+        --chart-3: 197 37% 24%;
+        --chart-4: 43 74% 66%;
+        --chart-5: 27 87% 67%;
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+    body {
+        @apply bg-background text-foreground;
+        font-family: 'Manrope', sans-serif;
+    }
+}
+
+/* Typography */
+.font-serif {
+    font-family: 'Playfair Display', serif;
+}
+
+.font-sans {
+    font-family: 'Manrope', sans-serif;
+}
+
+.font-mono {
+    font-family: 'JetBrains Mono', monospace;
+}
+
+/* Noise texture overlay */
+.noise-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: hsl(var(--secondary));
+}
+
+::-webkit-scrollbar-thumb {
+    background: hsl(var(--muted-foreground) / 0.3);
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground) / 0.5);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.animate-fade-in-up {
+    animation: fadeInUp 0.5s ease-out forwards;
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.3s ease-out forwards;
+}
+
+.animate-scale-in {
+    animation: scaleIn 0.3s ease-out forwards;
+}
+
+/* Stagger children animation */
+.stagger-children > * {
+    opacity: 0;
+    animation: fadeInUp 0.5s ease-out forwards;
+}
+
+.stagger-children > *:nth-child(1) { animation-delay: 0.05s; }
+.stagger-children > *:nth-child(2) { animation-delay: 0.1s; }
+.stagger-children > *:nth-child(3) { animation-delay: 0.15s; }
+.stagger-children > *:nth-child(4) { animation-delay: 0.2s; }
+.stagger-children > *:nth-child(5) { animation-delay: 0.25s; }
+.stagger-children > *:nth-child(6) { animation-delay: 0.3s; }
+.stagger-children > *:nth-child(7) { animation-delay: 0.35s; }
+.stagger-children > *:nth-child(8) { animation-delay: 0.4s; }
+
+/* Button hover effects */
+.btn-hover {
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+
+.btn-hover:hover {
+    transform: translateY(-2px);
+}
+
+.btn-hover:active {
+    transform: translateY(0) scale(0.98);
+}
+
+/* Card hover effects */
+.card-hover {
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+}
+
+.card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px -10px rgba(74, 64, 54, 0.1);
+}
+
+/* PIN input styles */
+.pin-input {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 2rem;
+    text-align: center;
+    letter-spacing: 0.5rem;
+}
+
+/* Metric display */
+.metric-big {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    line-height: 1;
+    letter-spacing: -0.02em;
+}
+
+@media (min-width: 768px) {
+    .metric-big {
+        font-size: 4.5rem;
+    }
+}
+
+/* Status indicators */
+.status-pending {
+    @apply bg-amber-100 text-amber-800;
+}
+
+.status-paid {
+    @apply bg-emerald-100 text-emerald-800;
+}
+
+.status-cancelled {
+    @apply bg-gray-100 text-gray-600;
+}
+
+/* Risk level badges */
+.risk-normal {
+    @apply bg-emerald-50 text-emerald-700 border-emerald-200;
+}
+
+.risk-medium {
+    @apply bg-amber-50 text-amber-700 border-amber-200;
+}
+
+.risk-high {
+    @apply bg-red-50 text-red-700 border-red-200;
+}
+
+/* Bottom navigation */
+.bottom-nav {
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* Selection styles */
+::selection {
+    background: hsl(43 65% 52% / 0.3);
+    color: hsl(var(--foreground));
+}
+
+/* Focus styles */
+:focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+}
+
+/* Debug wrapper */
+@layer base {
+    [data-debug-wrapper="true"] {
+        display: contents !important;
+    }
+}
+
+/* =====================================================
+   LAYOUT & SPACING SYSTEM
+   ===================================================== */
+
+/* Page container - consistent padding and max-width */
+.page-container {
+    @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-28;
+    padding-top: 1.5rem;
+}
+
+@media (min-width: 640px) {
+    .page-container {
+        padding-top: 2rem;
+    }
+}
+
+/* Page header with breathing room */
+.page-header {
+    @apply mb-8 pb-4 border-b border-border/40;
+}
+
+.page-title {
+    @apply text-2xl sm:text-3xl font-semibold text-primary tracking-tight;
+    font-family: 'Playfair Display', serif;
+}
+
+.page-subtitle {
+    @apply text-sm sm:text-base text-muted-foreground mt-1;
+}
+
+/* Section styling with consistent spacing */
+.section {
+    @apply mb-10;
+}
+
+.section-title {
+    @apply text-lg font-semibold text-primary mb-4 flex items-center gap-2;
+}
+
+.section-subtitle {
+    @apply text-sm text-muted-foreground mb-4;
+}
+
+/* =====================================================
+   CARD SYSTEM
+   ===================================================== */
+
+/* Stat cards - prominent with generous padding */
+.stat-card {
+    @apply bg-card rounded-2xl p-5 sm:p-6 border border-border/50;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.02);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stat-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06), 0 8px 24px rgba(0, 0, 0, 0.04);
+}
+
+.stat-label {
+    @apply text-xs sm:text-sm font-medium text-muted-foreground uppercase tracking-wider mb-2;
+}
+
+.stat-value {
+    @apply text-2xl sm:text-3xl font-bold tracking-tight;
+    font-family: 'Playfair Display', serif;
+}
+
+/* Content cards */
+.content-card {
+    @apply bg-card rounded-2xl p-5 sm:p-6 border border-border/50;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+/* =====================================================
+   QUICK ACTION BUTTONS
+   ===================================================== */
+
+.quick-action {
+    @apply bg-card rounded-2xl p-4 sm:p-5 border border-border/50 w-full;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    transition: all 0.2s ease;
+}
+
+.quick-action:hover {
+    @apply border-accent/30 bg-accent/5;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.quick-action:active {
+    transform: translateY(0);
+}
+
+/* =====================================================
+   ALERTS & NOTIFICATIONS
+   ===================================================== */
+
+.alert-card {
+    @apply rounded-xl p-4 border;
+}
+
+.alert-warning {
+    @apply bg-amber-50/80 border-amber-200/60 text-amber-900;
+}
+
+.alert-success {
+    @apply bg-emerald-50/80 border-emerald-200/60 text-emerald-900;
+}
+
+.alert-danger {
+    @apply bg-red-50/80 border-red-200/60 text-red-900;
+}
+
+.alert-info {
+    @apply bg-blue-50/80 border-blue-200/60 text-blue-900;
+}
+
+/* =====================================================
+   LIST ITEMS
+   ===================================================== */
+
+.list-item {
+    @apply flex items-center justify-between p-4 rounded-xl bg-card border border-border/40;
+    transition: background-color 0.15s ease;
+}
+
+.list-item:hover {
+    @apply bg-secondary/50;
+}
+
+.list-item + .list-item {
+    @apply mt-3;
+}
+
+/* =====================================================
+   ICON BUTTONS
+   ===================================================== */
+
+.icon-btn {
+    @apply w-10 h-10 rounded-xl flex items-center justify-center;
+    @apply hover:bg-secondary/80 transition-colors;
+}
+
+.icon-btn-sm {
+    @apply w-8 h-8 rounded-lg flex items-center justify-center;
+    @apply hover:bg-secondary/80 transition-colors;
+}
+
+/* =====================================================
+   CHECKLIST STYLES
+   ===================================================== */
+
+.checklist-item {
+    @apply flex items-center gap-3 p-3 rounded-xl transition-all;
+}
+
+.checklist-item:hover {
+    @apply bg-secondary/50;
+}
+
+.checklist-item.completed {
+    @apply opacity-60;
+}
+
+.checklist-item.completed .checklist-text {
+    @apply line-through text-muted-foreground;
+}
+
+/* =====================================================
+   TABS ENHANCEMENT
+   ===================================================== */
+
+.tab-list {
+    @apply flex gap-1 p-1 bg-secondary/50 rounded-xl mb-6;
+}
+
+.tab-trigger {
+    @apply flex-1 px-4 py-2.5 rounded-lg text-sm font-medium;
+    @apply text-muted-foreground transition-all;
+}
+
+.tab-trigger[data-state="active"] {
+    @apply bg-card text-primary shadow-sm;
+}
+
+/* =====================================================
+   FORM ENHANCEMENTS
+   ===================================================== */
+
+.form-group {
+    @apply space-y-2;
+}
+
+.form-label {
+    @apply text-sm font-medium text-primary;
+}
+
+.form-hint {
+    @apply text-xs text-muted-foreground mt-1;
+}
+
+/* =====================================================
+   EMPTY STATES
+   ===================================================== */
+
+.empty-state {
+    @apply flex flex-col items-center justify-center py-12 px-6 text-center;
+}
+
+.empty-state-icon {
+    @apply w-16 h-16 rounded-full bg-secondary/50 flex items-center justify-center mb-4;
+}
+
+.empty-state-title {
+    @apply text-lg font-medium text-primary mb-2;
+}
+
+.empty-state-description {
+    @apply text-sm text-muted-foreground max-w-xs;
+}
+
+/* =====================================================
+   RESPONSIVE GRID GAPS
+   ===================================================== */
+
+.grid-gap {
+    @apply gap-4 sm:gap-6;
+}
+
+/* =====================================================
+   SHADOW SYSTEM
+   ===================================================== */
+
+.shadow-card {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.02);
+}
+
+.shadow-card-hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06), 0 8px 24px rgba(0, 0, 0, 0.04);
+}
+
+.shadow-elevated {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08), 0 16px 48px rgba(0, 0, 0, 0.04);
+}
